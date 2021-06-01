@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wvmp1o6ae&@f_02850%fvgv*7e*4+lfmk+kt+@&0b4)e+--x+w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['socialwebsite.pythonanywhere.com']
 
 # Application definition
 
