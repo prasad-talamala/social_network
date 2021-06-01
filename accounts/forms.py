@@ -17,6 +17,9 @@ class NewPostForm(forms.ModelForm):
         help_text='The max length of the text is 4000.'
     )
 
+    post_image = forms.ImageField(required=False, error_messages={'invalid': ("Image files only")},
+                                  widget=forms.FileInput)
+
     class Meta:
         model = PostsModel
-        fields = ['heading', 'message']
+        fields = ['heading', 'message', 'post_image']

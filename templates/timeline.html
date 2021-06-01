@@ -36,6 +36,12 @@
                     </div>
                 </div>
                 {{ post.message }}
+                <br><br>
+                {% if post.post_image %}
+                <div class="col-6">
+                    <img class="text-muted" src="{{ post.post_image.url }}" style="width:250px; height:250px">
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

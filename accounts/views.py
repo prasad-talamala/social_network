@@ -77,7 +77,6 @@ def timeline(request):
 def profile(request):
     user_obj = User.objects.get(id=request.user.id)
     followers = SocialConnectivity.objects.filter(follower=user_obj)
-    print(followers, len(followers))
     if request.method == "GET":
         return render(request, 'profile.html', {'user_data': user_obj, 'followers': len(followers)})
     else:
@@ -95,7 +94,7 @@ def profile(request):
 @login_required
 def add_post(request):
     if request.method == 'POST':
-        form = NewPostForm(request.POST)
+        form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.created_by = request.user

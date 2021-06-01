@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h1>Add a new Post</h1>
                 <hr>
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
                     <hr>
