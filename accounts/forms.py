@@ -9,7 +9,7 @@ class NewPostForm(forms.ModelForm):
         widget=TextInput(attrs={'placeholder': 'Subject of the Post'}),
         max_length=150
     )
-    message = forms.CharField(
+    message = forms.CharField(required=False,
         widget=forms.Textarea(
             attrs={'rows': 5, 'placeholder': 'What is on your mind?'}
         ),

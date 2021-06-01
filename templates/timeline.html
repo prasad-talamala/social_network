@@ -35,8 +35,9 @@
                         <small class="text-muted">{{ post.created_at }}</small>
                     </div>
                 </div>
-                {{ post.message }}
-                <br><br>
+                {% if post.message %}
+                    {{ post.message }}
+                {% endif %}
                 {% if post.post_image %}
                 <div class="col-6">
                     <img class="text-muted" src="{{ post.post_image.url }}" style="width:250px; height:250px">
