@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Social Network | New Post</title>{% endblock title %}
+{% block heading %}<a class="navbar-brand" href="{% url 'timeline' %}">Social Network</a>{% endblock heading %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h1>Add a new Post</h1>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <hr>
+                    <button type="submit" class="btn btn-danger">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

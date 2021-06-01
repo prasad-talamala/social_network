@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}<title>Social Network | Login</title>{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h1>Login</h1>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <hr>
+                    <button type="submit" class="btn btn-info">Login</button>
+                    <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
