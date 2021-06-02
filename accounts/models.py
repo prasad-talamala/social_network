@@ -9,7 +9,13 @@ class PostsModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{} by {}".format(self.heading, self.created_by)
+
 
 class SocialConnectivity(models.Model):
     follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
     following = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{} following {}".format(self.follower, self.following)
