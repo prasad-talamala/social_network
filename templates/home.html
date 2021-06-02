@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}<title>Social Network | Home</title>{% endblock title %}
 {% block content %}
 
-Hey Developer 👋🏻 , Here is the <strong style="color:red">Social Network</strong> app for Post your feelings, follow the people...
+Hey 👋🏻 , Here is the <strong style="color:red">Social Network</strong> app for Post your feelings, follow the people...
 <br><br>
-<p> To get started then please <a href="{% url 'login' %}"> Log In </a></p>
+<p> To get started, please <a href="{% url 'login' %}"> Log In </a></p>
 
-<p> If you dont have account then <a href="{% url 'register' %}"> Sign up</a></p>
+<p> If you dont have account, then <a href="{% url 'register' %}"> Sign up</a></p>
+<hr>
 
+<i class="float-right" style="color:green">Designed and Developed by SVUCE'ian.</i>
 {% endblock content %}

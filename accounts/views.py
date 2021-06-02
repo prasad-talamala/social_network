@@ -32,6 +32,7 @@ def register(request):
                 try:
                     user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                     user.save()
+                    messages.success(request, "registration successful. please login!")
                     return redirect("login")
                 except IntegrityError:
                     messages.error(request, "username already taken..")
@@ -43,7 +44,8 @@ def register(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('todos')
+        messages.error(request, 'User logged in. please logout and try login!')
+        return redirect('timeline')
     else:
         if request.method == "GET":
             form = AuthenticationForm()
@@ -51,15 +53,17 @@ def login(request):
         else:
             user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
             if user is None:
-                messages.error(request, "username and password didn't match")
+                messages.error(request, 'Invalid Login Credentials')
                 return render(request, "login.html", {"form": AuthenticationForm()})
             else:
                 auth_login(request, user)
+                messages.success(request, 'Login Successful.')
                 return redirect("timeline")
 
 
 def logout(request):
     auth_logout(request)
+    messages.success(request, 'Successfully Logged Out!')
     return redirect("home")
 
 
@@ -87,7 +91,7 @@ def profile(request):
         if request.POST["email"]:
             user_obj.email = request.POST["email"]
         user_obj.save()
-        messages.success(request, "Profile Updated Successfully.")
+        messages.success(request, "Profile Updated!")
         return render(request, 'profile.html', {'user_data': user_obj, 'followers': len(followers)})
 
 
@@ -99,20 +103,11 @@ def add_post(request):
             new_post = form.save(commit=False)
             new_post.created_by = request.user
             new_post.save()
-
+            messages.success(request, "Your Post is in Live.")
             return redirect("timeline")
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {'form': form})
-
-
-def get_user_name(request):
-    sq = request.GET.get('user_search')
-    user_objects = [i.username for i in get_list_or_404(User, username__icontains=sq)]
-    if user_objects:
-        return JsonResponse(user_objects, safe=False)
-    else:
-        return JsonResponse({'status': 'false', 'message': "Not Found"}, status=404)
 
 
 def find_friends(request):
@@ -130,4 +125,5 @@ def find_friends(request):
 def follow_user(request, name):
     usr_obj = User.objects.get(username=name)
     SocialConnectivity.objects.create(follower=request.user, following=usr_obj)
+    messages.success(request, "Yay! 🎉 You are following {}. you can see his posts now.".format(usr_obj))
     return redirect("timeline")
