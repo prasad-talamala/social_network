@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
 from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, logout as auth_logout
@@ -89,7 +90,7 @@ def timeline(request):
     follower_names = [i.following for i in followers]
     follower_names.append(user_obj)
     posts = PostsModel.objects.filter(created_by__in=follower_names)
-    return render(request, "timeline.html", {"posts": posts})
+    return render(request, "timeline.html", {"posts": posts, "domain": get_current_site(request)})
 
 
 @login_required

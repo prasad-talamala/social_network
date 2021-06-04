@@ -26,9 +26,6 @@
                     aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {% if user.is_superuser %}
-            <a class="btn btn-outline-danger" href="http://127.0.0.1:8000/admin/">Admin</a>
-            {% endif %}
             <div class="collapse navbar-collapse" id="mainMenu">
 
                 {% if user.is_authenticated %}

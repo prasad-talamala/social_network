@@ -8,10 +8,20 @@
 
 <div class="card mb-2">
     <div class="card-body p-3">
-        <p>What's on your mind, {{ user }}? <a href="{% url 'add_post' %}"><button class="btn btn-outline-info btn-sm">Post here</button></a></p>
+        <p>What's on your mind, {{ user }}? <a href="{% url 'add_post' %}">
+            <button class="btn btn-outline-info btn-sm">Post here</button>
+        </a>
+        {% if user.is_superuser %}
+            <a class="btn btn-outline-danger btn-sm" href="http://{{ domain }}/admin/" style="float:right">Admin</a>
+            {% endif %}
+        </p>
         <op style="float:right">
-            <a href="{% url 'friends' %}"><button class="btn btn-outline-dark btn-sm">Your Friends</button></a>
-            <a href="{% url 'find_friends' %}"><button class="btn btn-outline-success btn-sm">New Friends</button></a>
+            <a href="{% url 'friends' %}">
+                <button class="btn btn-outline-dark btn-sm">Your Friends</button>
+            </a>
+            <a href="{% url 'find_friends' %}">
+                <button class="btn btn-outline-success btn-sm">New Friends</button>
+            </a>
         </op>
     </div>
 </div>
@@ -37,7 +47,7 @@
                     </div>
                 </div>
                 {% if post.message %}
-                    {{ post.message }}
+                {{ post.message }}
                 {% endif %}
                 {% if post.post_image %}
                 <div class="col-6">
@@ -53,7 +63,7 @@
 <div class="card mb-2">
     <div class="card-body p-3" align="center" style="color:red">
         <h1>No Feed</h1>
-    Follow people to get their posts..
+        Follow people to get their posts..
     </div>
 </div>
 {% endif %}
