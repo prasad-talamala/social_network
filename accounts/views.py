@@ -37,15 +37,15 @@ def register(request):
                                                         first_name=request.POST['first_name'],
                                                         last_name=request.POST['last_name'])
 
-                    mail_subject = 'Thank you 🙏🏻 for registration. Have a great day!'
-
-                    message = render_to_string('acoount_registration.html', {
-                        'user': new_user,
-                    })
-                    to_email = new_user.email
-                    send_email = EmailMessage(mail_subject, message, to=[to_email])
-                    send_email.content_subtype = 'html'
-                    send_email.send()
+                    # mail_subject = 'Thank you 🙏🏻 for registration. Have a great day!'
+                    #
+                    # message = render_to_string('acoount_registration.html', {
+                    #     'user': new_user,
+                    # })
+                    # to_email = new_user.email
+                    # send_email = EmailMessage(mail_subject, message, to=[to_email])
+                    # send_email.content_subtype = 'html'
+                    # send_email.send()
 
                     messages.success(request, "registration successful. please login!")
                     return redirect("login")
