@@ -43,7 +43,7 @@ def register(request):
                         'user': new_user,
                     })
                     to_email = new_user.email
-                    send_email = EmailMessage(mail_subject, message, to=[to_email])
+                    send_email = EmailMessage(mail_subject, message, to=[to_email], fail_silently=True)
                     send_email.content_subtype = 'html'
                     send_email.send()
 
