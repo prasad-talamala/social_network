@@ -49,13 +49,13 @@
         <img src="{% static 'icons/user.png' %}" alt="{{ user_data.created_by }}" style="width:30px; height:30px">
         {% if user_data.first_name %}
             {% if user_data.last_name %}
-            <strong style="color:blue">{{ user_data.first_name }} {{ user_data.last_name }} </strong>
+            <strong style="color:blue" class="btn btn-outline-info disabled">{{ user_data.first_name }} {{ user_data.last_name }} </strong>
             {% endif %}
         {% else %}
             Name not available..
         {% endif %}
 
-        <label> | Following </label>
+        <label> Following </label>
         <span class="badge badge-pill badge-danger notify">{{ followers }}</span>
     </div>
 

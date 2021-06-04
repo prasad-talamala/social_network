@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}<title>Social Network | Find Friends</title>{% endblock title %}
+{% block title %}<title>Social Network | Friends</title>{% endblock title %}
 
 {% block heading %}<a class="navbar-brand" href="{% url 'timeline' %}">Social Network</a>{% endblock heading %}
 {% block content %}
-{% if non_followers_list %}
-    {% for each_mem in non_followers_list %}
+{% if followers_list %}
+    {% for each_mem in followers_list %}
 
     <div class="card mb-2">
 
@@ -18,7 +18,9 @@
                 </div>
                 <div class="col-9">
                     <div class="col-6">
-                        <a class="btn btn-outline-danger btn-sm" href="{% url 'follow_user' each_mem %}"> Follow </a>
+                        <a class="btn btn-outline-primary btn-sm" href="#"> Message </a>
+
+                        <a class="btn btn-outline-danger btn-sm" href="{% url 'unfollow_user' each_mem %}"> unfollow </a>
                     </div>
                 </div>
             </div>
@@ -27,9 +29,10 @@
     {% endfor %}
 {% else %}
     <div class="card mb-2">
-        <div class="card-body p-3" align="center" style="color:green">
-                <h1>No Friends to Follow...😊😊😊</h1>
+        <div class="card-body p-3" align="center" style="color:red">
+                <h1>No Friends to show...🥲🥲🥲</h1>
         </div>
+        Please make friends <a href="{% url 'find_friends' %}">here</a>
     </div>
 {% endif %}
 {% endblock %}
